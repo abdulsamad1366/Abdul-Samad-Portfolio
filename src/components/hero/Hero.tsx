@@ -116,7 +116,7 @@ export default function Hero() {
         ref={titleWrapperRef}
         className="relative w-full pt-1 sm:pt-2 flex flex-col items-center justify-start pointer-events-none z-10"
       >
-        <div className="flex items-center justify-center text-[22vw] sm:text-[23vw] md:text-[23.5vw] lg:text-[24vw] font-black tracking-tighter leading-none text-[#FFFF23] uppercase font-smooch drop-shadow-sm select-none transform scale-x-105 sm:scale-x-108 md:scale-x-110 lg:scale-x-112 origin-center">
+        <div className="flex items-center justify-center gap-1.5 sm:gap-3 md:gap-4 lg:gap-5 text-[20vw] sm:text-[21vw] md:text-[21.5vw] lg:text-[30vw] font-black tracking-wider leading-none text-[#FFFF23] uppercase font-anton drop-shadow-sm select-none origin-center">
           {LETTERS.map((letter, index) => (
             <span
               key={index}
@@ -145,12 +145,12 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* 2. Navigation Items Row — Positioned directly BELOW / AFTER the giant SAMAD text */}
-      <div className="absolute top-[44vh] sm:top-[47vh] inset-x-0 z-10 pointer-events-none">
+      {/* 2. Navigation Items Row — Positioned cleanly BELOW the giant SAMAD text */}
+      <div className="absolute top-[49vh] sm:top-[51vh] md:top-[52vh] lg:top-[51vh] inset-x-0 z-25 pointer-events-none">
         <div
           ref={navRowRef}
           style={{ opacity: 0, visibility: 'hidden' }}
-          className="max-w-[1450px] mx-auto w-full px-6 sm:px-12 flex items-center justify-between font-extrabold text-xs sm:text-sm tracking-wider uppercase pointer-events-auto"
+          className="max-w-[1550px] mx-auto w-full px-6 sm:px-12 md:px-16 lg:px-20 flex items-center justify-between font-extrabold text-xs sm:text-sm tracking-wider uppercase pointer-events-auto"
         >
           {/* Left Links */}
           <div className="flex items-center gap-2 sm:gap-4 text-black">
@@ -238,12 +238,12 @@ export default function Hero() {
       <div
         ref={leftCardsRef}
         style={{ opacity: 0, visibility: 'hidden' }}
-        className="absolute left-6 sm:left-12 lg:left-16 bottom-10 hidden lg:flex flex-col gap-4 z-30 pointer-events-auto"
+        className="absolute left-4 sm:left-8 lg:left-16 bottom-6 lg:bottom-10 hidden md:flex flex-col gap-3 lg:gap-4 z-30 pointer-events-auto scale-90 md:scale-95 lg:scale-100 origin-bottom-left"
       >
         {/* Projects Glass Card */}
-        <div className="bg-white/20 backdrop-blur-2xl border border-white/35 rounded-2xl sm:rounded-3xl px-6 py-5 flex items-center gap-5 text-white shadow-[0_20px_50px_rgba(0,0,0,0.25)] min-w-[230px]">
+        <div className="bg-white/20 backdrop-blur-2xl border border-white/35 rounded-2xl sm:rounded-3xl px-6 py-5 flex items-center gap-5 text-white shadow-[0_20px_50px_rgba(0,0,0,0.25)] min-w-[210px] lg:min-w-[230px]">
           {/* Yellow Webflow W Logo */}
-          <svg className="w-14 h-10 text-[#FFFF23] fill-current flex-shrink-0 drop-shadow-sm" viewBox="0 0 200 120">
+          <svg className="w-12 lg:w-14 h-9 lg:h-10 text-[#FFFF23] fill-current flex-shrink-0 drop-shadow-sm" viewBox="0 0 200 120">
             <path d="M 20 20 L 65 100 L 98 45 L 131 100 L 180 20 L 142 20 L 118 70 L 98 20 L 78 70 L 54 20 Z" />
           </svg>
           <div className="flex flex-col text-left">
@@ -253,14 +253,14 @@ export default function Hero() {
         </div>
 
         {/* Experience Glass Card */}
-        <div className="bg-white/20 backdrop-blur-2xl border border-white/35 rounded-2xl sm:rounded-3xl p-6 flex flex-col items-center justify-center text-center text-white shadow-[0_20px_50px_rgba(0,0,0,0.25)] w-[180px] self-center">
-          <span className="text-5xl sm:text-6xl font-black text-[#FFFF23] leading-none tracking-tight mb-2">7+</span>
-          <span className="text-sm sm:text-base font-black text-white leading-tight">
+        <div className="bg-white/20 backdrop-blur-2xl border border-white/35 rounded-2xl sm:rounded-3xl p-5 lg:p-6 flex flex-col items-center justify-center text-center text-white shadow-[0_20px_50px_rgba(0,0,0,0.25)] w-[160px] lg:w-[180px] self-center">
+          <span className="text-4xl lg:text-6xl font-black text-[#FFFF23] leading-none tracking-tight mb-2">7+</span>
+          <span className="text-xs lg:text-base font-black text-white leading-tight">
             Years of<br />experience
           </span>
         </div>
 
-        <p className="text-xs font-semibold text-black/80 mt-1 leading-relaxed max-w-[200px]">
+        <p className="text-xs font-semibold text-black/80 mt-1 leading-relaxed max-w-[180px] lg:max-w-[200px]">
           The Webflow Expert.<br />That's Samad.
         </p>
       </div>
@@ -269,24 +269,24 @@ export default function Hero() {
       <div
         ref={rightCardsRef}
         style={{ opacity: 0, visibility: 'hidden' }}
-        className="absolute right-6 sm:right-12 lg:right-16 bottom-10 hidden lg:flex flex-col gap-4 z-30 pointer-events-auto max-w-[270px]"
+        className="absolute right-4 sm:right-8 lg:right-16 bottom-6 lg:bottom-10 hidden md:flex flex-col gap-3 lg:gap-4 z-30 pointer-events-auto max-w-[220px] lg:max-w-[270px] scale-90 md:scale-95 lg:scale-100 origin-bottom-right"
       >
         {/* Traits Glass List */}
-        <div className="bg-white/20 backdrop-blur-2xl border border-white/35 rounded-2xl sm:rounded-3xl p-6 flex flex-col gap-3 text-white shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
-          <div className="flex items-center gap-3 text-sm font-extrabold text-white">
-            <span className="w-3 h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Creative
+        <div className="bg-white/20 backdrop-blur-2xl border border-white/35 rounded-2xl sm:rounded-3xl p-5 lg:p-6 flex flex-col gap-2.5 lg:gap-3 text-white shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
+          <div className="flex items-center gap-3 text-xs lg:text-sm font-extrabold text-white">
+            <span className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Creative
           </div>
-          <div className="flex items-center gap-3 text-sm font-extrabold text-white">
-            <span className="w-3 h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Reliable
+          <div className="flex items-center gap-3 text-xs lg:text-sm font-extrabold text-white">
+            <span className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Reliable
           </div>
-          <div className="flex items-center gap-3 text-sm font-extrabold text-white">
-            <span className="w-3 h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Strategist
+          <div className="flex items-center gap-3 text-xs lg:text-sm font-extrabold text-white">
+            <span className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Strategist
           </div>
-          <div className="flex items-center gap-3 text-sm font-extrabold text-white">
-            <span className="w-3 h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Builder
+          <div className="flex items-center gap-3 text-xs lg:text-sm font-extrabold text-white">
+            <span className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Builder
           </div>
-          <div className="flex items-center gap-3 text-sm font-extrabold text-white">
-            <span className="w-3 h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Efficient
+          <div className="flex items-center gap-3 text-xs lg:text-sm font-extrabold text-white">
+            <span className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Efficient
           </div>
         </div>
 
