@@ -179,14 +179,14 @@ export default function Hero() {
         <div
           ref={portraitRef}
           style={{ opacity: 0, visibility: 'hidden' }}
-          className="relative w-[75vw] sm:w-[420px] md:w-[480px] lg:w-[540px] xl:w-[580px] h-[82vh] sm:h-[86vh] md:h-[90vh] flex items-end justify-center"
+          className="relative w-[85vw] sm:w-[520px] md:w-[600px] lg:w-[660px] xl:w-[720px] h-[86vh] sm:h-[91vh] md:h-[95vh] lg:h-[98vh] flex items-end justify-center"
         >
           <Image
             src="/samad-allsaints-halfbody.png"
             alt="Samad"
             fill
             priority
-            className="object-contain object-bottom drop-shadow-2xl scale-[1.02] sm:scale-[1.08] md:scale-[1.12] lg:scale-[1.18] xl:scale-[1.22] origin-bottom transition-all duration-300"
+            className="object-contain object-bottom drop-shadow-2xl scale-[1.12] sm:scale-[1.24] md:scale-[1.38] lg:scale-[1.52] xl:scale-[1.62] origin-bottom transition-all duration-300"
           />
 
           {/* Overlaid Headline & Action Pill Buttons on Center Torso */}
