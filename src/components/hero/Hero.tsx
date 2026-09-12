@@ -114,9 +114,9 @@ export default function Hero() {
       {/* 1. SINGLE CONTINUOUS GSAP GIANT SAMAD TITLE — Moves from Preloader Center to Hero Top seamlessly */}
       <div
         ref={titleWrapperRef}
-        className="relative w-full pt-2 sm:pt-4 flex flex-col items-center justify-start pointer-events-none z-10"
+        className="relative w-full pt-1 sm:pt-2 flex flex-col items-center justify-start pointer-events-none z-10"
       >
-        <div className="flex items-center justify-center text-[23vw] sm:text-[24vw] md:text-[25vw] font-black tracking-tighter leading-none text-[#FFFF23] uppercase font-sans drop-shadow-sm select-none transform scale-x-105 sm:scale-x-108 md:scale-x-110 lg:scale-x-115 origin-center">
+        <div className="flex items-center justify-center text-[22vw] sm:text-[23vw] md:text-[23.5vw] lg:text-[24vw] font-black tracking-tighter leading-none text-[#FFFF23] uppercase font-smooch drop-shadow-sm select-none transform scale-x-105 sm:scale-x-108 md:scale-x-110 lg:scale-x-112 origin-center">
           {LETTERS.map((letter, index) => (
             <span
               key={index}
@@ -179,14 +179,14 @@ export default function Hero() {
         <div
           ref={portraitRef}
           style={{ opacity: 0, visibility: 'hidden' }}
-          className="relative w-[85vw] sm:w-[500px] md:w-[580px] lg:w-[640px] xl:w-[700px] h-[80vh] sm:h-[85vh] md:h-[90vh] lg:h-[94vh] flex items-end justify-center"
+          className="relative w-[75vw] sm:w-[420px] md:w-[480px] lg:w-[540px] xl:w-[580px] h-[82vh] sm:h-[86vh] md:h-[90vh] flex items-end justify-center"
         >
           <Image
             src="/samad-allsaints-halfbody.png"
             alt="Samad"
             fill
             priority
-            className="object-contain object-bottom drop-shadow-2xl scale-[1.05] sm:scale-[1.15] md:scale-[1.35] lg:scale-[1.5] xl:scale-[1.65] origin-bottom transition-all duration-300"
+            className="object-contain object-bottom drop-shadow-2xl scale-[1.02] sm:scale-[1.08] md:scale-[1.12] lg:scale-[1.18] xl:scale-[1.22] origin-bottom transition-all duration-300"
           />
 
           {/* Overlaid Headline & Action Pill Buttons on Center Torso */}
