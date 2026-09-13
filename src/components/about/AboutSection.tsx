@@ -6,7 +6,7 @@ import { PORTFOLIO_DATA } from '@/data/portfolio-data';
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-28 px-4 bg-[#0A0A0A] text-white relative">
+    <section id="about" className="py-28 px-4 bg-[#E3DFD3] text-white relative">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         {/* Left Column: Image Card */}

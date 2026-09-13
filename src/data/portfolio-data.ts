@@ -48,6 +48,7 @@ export const PORTFOLIO_DATA = {
     tagline: "Merging architectural creativity, micro-interactions, and high-performance development.",
     bio: "Working closely with visionary teams to deliver custom web builds that blend artistic design, technical excellence, and measurable value.",
     avatar: "/samad-photo.jpg",
+    email: "hello@samadportfolio.com",
     stats: {
       projectsCompleted: "80+",
       yearsExperience: "7+",

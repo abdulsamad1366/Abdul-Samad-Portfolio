@@ -1,6 +1,10 @@
 'use client';
 
 import { useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -18,18 +22,16 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
         touchMultiplier: 2,
       });
 
-      function raf(time: number) {
-        lenisInstance?.raf(time);
-        animationFrameId = requestAnimationFrame(raf);
-      }
+      lenisInstance.on('scroll', ScrollTrigger.update);
 
-      animationFrameId = requestAnimationFrame(raf);
+      gsap.ticker.add((time) => {
+        lenisInstance?.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
     });
 
     return () => {
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
       if (lenisInstance) {
         lenisInstance.destroy();
       }

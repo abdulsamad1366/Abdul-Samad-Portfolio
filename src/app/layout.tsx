@@ -5,11 +5,6 @@ import SmoothScrollProvider from '@/lib/lenis-provider';
 export const metadata: Metadata = {
   title: 'SAMAD® — Creative Web & Motion Engineer',
   description: 'Portfolio of Samad, creative web developer and motion engineer crafting high-performance interactive web builds.',
-  icons: {
-    icon: '/icon.png',
-    shortcut: '/favicon.ico',
-    apple: '/apple-icon.png',
-  },
   openGraph: {
     title: 'SAMAD® — Creative Web & Motion Engineer',
     description: 'Portfolio of Samad, creative web developer and motion engineer.',

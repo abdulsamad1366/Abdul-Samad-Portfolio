@@ -4,12 +4,16 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PORTFOLIO_DATA } from '@/data/portfolio-data';
 import WarpText from '@/components/ui/WarpText';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const LETTERS = ['S', 'A', 'M', 'A', 'D'];
 
 export default function Hero() {
+  const pinWrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const titleWrapperRef = useRef<HTMLDivElement>(null);
   const lettersRef = useRef<(HTMLSpanElement | null)[]>([]);
@@ -31,7 +35,7 @@ export default function Hero() {
       gsap.set(titleWrapperRef.current, { y: '32vh' });
       gsap.set(lettersRef.current, { x: 250, opacity: 0, autoAlpha: 0, scale: 0.85 });
       gsap.set(badgeRef.current, { opacity: 0, y: 15, scale: 0.9, autoAlpha: 0 });
-      gsap.set(portraitRef.current, { yPercent: 100, opacity: 0, autoAlpha: 0 });
+      gsap.set(portraitRef.current, { yPercent: 100, opacity: 0, autoAlpha: 0, filter: 'blur(0px)' });
       gsap.set([navRowRef.current, headlineRef.current, leftCardsRef.current, rightCardsRef.current], {
         opacity: 0,
         autoAlpha: 0,
@@ -100,18 +104,95 @@ export default function Hero() {
           [leftCardsRef.current, rightCardsRef.current],
           { opacity: 1, autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out' },
           '-=0.6'
+        )
+        .call(() => {
+          ScrollTrigger.refresh();
+        });
+
+      // 7. Pinned Scroll Animation: Main Image gets Blurred & Hero Elements morph towards Left Sidebar
+      const scrollTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: pinWrapperRef.current,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.8,
+        },
+      });
+
+      scrollTl
+        .to(
+          portraitRef.current,
+          {
+            filter: 'blur(24px)',
+            opacity: 0.2,
+            scale: 1,
+            y: 0,
+            yPercent: 0,
+            ease: 'none',
+          },
+          0
+        )
+        .to(
+          titleWrapperRef.current,
+          {
+            scale: 0.16,
+            xPercent: -40,
+            yPercent: -44,
+            opacity: 1,
+            transformOrigin: 'top left',
+            ease: 'none',
+          },
+          0
+        )
+        .to(
+          navRowRef.current,
+          {
+            opacity: 0,
+            y: -40,
+            ease: 'none',
+          },
+          0
+        )
+        .to(
+          leftCardsRef.current,
+          {
+            opacity: 0,
+            x: -60,
+            ease: 'none',
+          },
+          0
+        )
+        .to(
+          rightCardsRef.current,
+          {
+            opacity: 0,
+            x: 60,
+            ease: 'none',
+          },
+          0
+        )
+        .to(
+          headlineRef.current,
+          {
+            y: -700,
+            yPercent: -150,
+            opacity: 0,
+            ease: 'none',
+          },
+          0
         );
     },
-    { scope: containerRef }
+    { scope: pinWrapperRef }
   );
 
   return (
-    <section
-      ref={containerRef}
-      id="hero"
-      className="relative w-full h-screen h-[100dvh] bg-[#E3DFD3] text-black overflow-hidden flex flex-col justify-between select-none"
-    >
-      {/* 1. SINGLE CONTINUOUS GSAP GIANT SAMAD TITLE — Moves from Preloader Center to Hero Top seamlessly */}
+    <div ref={pinWrapperRef} className="relative w-full h-[220vh] bg-[#E3DFD3]">
+      <section
+        ref={containerRef}
+        id="hero"
+        className="sticky top-0 w-full h-screen h-[100dvh] bg-[#E3DFD3] text-black overflow-hidden flex flex-col justify-between select-none z-10"
+      >
+      {/* 1. SINGLE CONTINUOUS GSAP GIANT SAMAD TITLE — Centered across hero top */}
       <div
         ref={titleWrapperRef}
         className="relative w-full pt-1 sm:pt-2 flex flex-col items-center justify-start pointer-events-none z-10"
@@ -135,7 +216,7 @@ export default function Hero() {
         <div
           ref={badgeRef}
           style={{ opacity: 0, visibility: 'hidden' }}
-          className="absolute top-[54vh] flex items-center gap-3 bg-black/90 text-white px-5 py-2 rounded-full border border-white/20 shadow-2xl backdrop-blur-md font-bold text-xs sm:text-sm tracking-widest uppercase"
+          className="absolute top-[54vh] flex items-center gap-3 bg-black/90 text-white px-5 py-2 rounded-full border border-white/20 shadow-2xl backdrop-blur-md font-bold text-xs sm:text-sm tracking-widest uppercase z-30"
         >
           <span className="w-2 h-2 rounded-full bg-[#FFFF23] animate-pulse"></span>
           <span className="text-white/80">LOADING</span>
@@ -174,8 +255,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* 3. Center Portrait Image (Rises smoothly from bottom in front of SAMAD title via GSAP) */}
-      <div className="absolute inset-0 flex items-end justify-center pointer-events-none z-20 overflow-hidden">
+      {/* 3. Center Portrait Image & Torso Headline */}
+      <div className="fixed inset-0 flex items-end justify-center pointer-events-none z-20">
         <div
           ref={portraitRef}
           style={{ opacity: 0, visibility: 'hidden' }}
@@ -188,14 +269,24 @@ export default function Hero() {
             priority
             className="object-contain object-bottom drop-shadow-2xl scale-[1.22] sm:scale-[1.34] md:scale-[1.48] lg:scale-[1.60] xl:scale-[1.70] origin-bottom transition-all duration-300"
           />
+        </div>
 
-          {/* Overlaid Headline & Action Pill Buttons on Center Torso */}
-          <div
-            ref={headlineRef}
-            style={{ opacity: 0, visibility: 'hidden' }}
-            className="absolute bottom-6 sm:bottom-10 inset-x-0 flex flex-col items-center text-center z-30 pointer-events-auto"
-          >
-            <div className="w-full h-[240px] sm:h-[280px] md:h-[310px] max-w-[95vw] sm:max-w-[660px] mb-2 relative flex items-center justify-center">
+        {/* Overlaid Headline & Action Pill Buttons on Center Torso */}
+        <div
+          ref={headlineRef}
+          style={{ opacity: 0, visibility: 'hidden' }}
+          className="absolute bottom-6 sm:bottom-10 inset-x-0 flex flex-col items-center text-center z-30 pointer-events-auto px-4"
+        >
+          <div className="w-full h-[220px] sm:h-[260px] md:h-[290px] max-w-[95vw] sm:max-w-[660px] mb-3 relative flex items-center justify-center">
+            {/* Fail-safe Crisp HTML Headline Text */}
+            {/* <h2 className="absolute inset-0 flex flex-col items-center justify-center font-black text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-tight drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)] z-0 pointer-events-none select-none uppercase">
+              <span>I BUILD</span>
+              <span>DIGITAL EXPERIENCES</span>
+              <span>DIFFERENTLY.</span>
+            </h2> */}
+
+            {/* Interactive WebGL WarpText Overlay */}
+            <div className="relative z-10 w-full h-full">
               <WarpText
                 text={"I BUILD\nDIGITAL EXPERIENCES\nDIFFERENTLY."}
                 color="#ffffff"
@@ -206,30 +297,30 @@ export default function Hero() {
                 pointerStrength={0.38}
                 refraction={0.018}
                 ripple={true}
-                fontSize="clamp(2.4rem, 6vw, 4.8rem)"
+                fontSize="clamp(2.2rem, 5.5vw, 4.4rem)"
                 fontWeight={900}
                 letterSpacing="-0.04em"
                 lineHeight={0.90}
                 style={{ height: '100%', width: '100%' }}
               />
             </div>
+          </div>
 
-            <div className="flex items-center gap-3">
-              <a
-                href={PORTFOLIO_DATA.profile.socials.calCom}
-                target="_blank"
-                rel="noreferrer"
-                className="bg-[#FFFF23] text-black font-extrabold text-xs sm:text-sm px-6 py-3 rounded-full hover:bg-white transition-all shadow-xl hover:scale-105"
-              >
-                Book a Call
-              </a>
-              <a
-                href="#about"
-                className="bg-[#FFFF23] text-black font-extrabold text-xs sm:text-sm px-6 py-3 rounded-full hover:bg-white transition-all shadow-xl hover:scale-105"
-              >
-                About Me
-              </a>
-            </div>
+          <div className="flex items-center justify-center gap-3 relative z-30">
+            <a
+              href={PORTFOLIO_DATA.profile.socials.calCom}
+              target="_blank"
+              rel="noreferrer"
+              className="bg-[#FFFF23] text-black font-extrabold text-xs sm:text-sm px-6 py-3 rounded-full hover:bg-white transition-all shadow-xl hover:scale-105"
+            >
+              Book a Call
+            </a>
+            <a
+              href="#about"
+              className="bg-[#FFFF23] text-black font-extrabold text-xs sm:text-sm px-6 py-3 rounded-full hover:bg-white transition-all shadow-xl hover:scale-105"
+            >
+              About Me
+            </a>
           </div>
         </div>
       </div>
@@ -295,5 +386,6 @@ export default function Hero() {
         </p>
       </div>
     </section>
+  </div>
   );
 }
