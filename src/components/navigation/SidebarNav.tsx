@@ -46,7 +46,7 @@ export default function SidebarNav({ isPinned }: { isPinned: boolean }) {
 
   return (
     <aside
-      className={`fixed left-0 top-0 w-[280px] xl:w-[310px] h-screen bg-[#E3DFD3] text-black border-r border-black/10 flex-col justify-between p-6 z-40 hidden lg:flex transition-all duration-500 origin-left ${
+      className={`fixed left-4 top-4 w-[280px] xl:w-[310px] h-[calc(100vh-2rem)] bg-[#E3DFD3] text-black border border-white/60 rounded-3xl flex-col justify-between p-6 z-40 hidden lg:flex transition-all duration-500 origin-left ${
         isPinned ? 'opacity-100 translate-x-0 pointer-events-auto shadow-2xl' : 'opacity-0 -translate-x-full pointer-events-none'
       }`}
     >
@@ -55,7 +55,7 @@ export default function SidebarNav({ isPinned }: { isPinned: boolean }) {
         <div className="flex items-center justify-between">
           <a
             href="#hero"
-            className="flex items-center gap-2 bg-black text-[#FFFF23] px-3.5 py-1.5 rounded-xl font-black text-sm tracking-tighter uppercase shadow-md hover:scale-105 transition-transform"
+            className="flex items-center gap-2 bg-[#FFFF23] text-black px-4 py-3 rounded-2xl font-black text-sm tracking-tighter uppercase shadow-md hover:scale-105 transition-transform"
           >
             <span>SAMAD</span>
             <span className="text-[10px] bg-[#FFFF23] text-black px-1 rounded font-bold">®</span>
@@ -67,7 +67,7 @@ export default function SidebarNav({ isPinned }: { isPinned: boolean }) {
               href={PORTFOLIO_DATA.profile.socials.twitter}
               target="_blank"
               rel="noreferrer"
-              className="p-1.5 rounded-lg hover:bg-black/10 hover:text-black transition-colors"
+              className="p-3 rounded-2xl bg-white/60 border border-black/10 hover:bg-white hover:text-black transition-colors"
               title="X / Twitter"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -78,7 +78,7 @@ export default function SidebarNav({ isPinned }: { isPinned: boolean }) {
               href={PORTFOLIO_DATA.profile.socials.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="p-1.5 rounded-lg hover:bg-black/10 hover:text-black transition-colors"
+              className="p-3 rounded-2xl bg-white/60 border border-black/10 hover:bg-white hover:text-black transition-colors"
               title="LinkedIn"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">

@@ -5,6 +5,10 @@ import SmoothScrollProvider from '@/lib/lenis-provider';
 export const metadata: Metadata = {
   title: 'SAMAD® — Creative Web & Motion Engineer',
   description: 'Portfolio of Samad, creative web developer and motion engineer crafting high-performance interactive web builds.',
+  icons: {
+    icon: '/icon.png',
+    apple: '/apple-icon.png',
+  },
   openGraph: {
     title: 'SAMAD® — Creative Web & Motion Engineer',
     description: 'Portfolio of Samad, creative web developer and motion engineer.',
@@ -18,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning className="dark">
       <body className="antialiased bg-black text-white selection:bg-[#FFFF23] selection:text-black">
         <SmoothScrollProvider>
           {children}

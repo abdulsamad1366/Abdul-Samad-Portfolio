@@ -15,7 +15,7 @@ export default function Home() {
       <Hero />
 
       {/* 2. Pinned Sidebar + Main Portfolio Sections */}
-      <PinnedLayoutWrapper>
+      {/* <PinnedLayoutWrapper> */}
         <AboutSection />
         <ProjectsSection />
         <CapabilitiesSection />
@@ -23,7 +23,7 @@ export default function Home() {
         <TestimonialsSection />
         <FaqSection />
         <Footer />
-      </PinnedLayoutWrapper>
+      {/* </PinnedLayoutWrapper> */}
     </main>
   );
 }

@@ -16,6 +16,7 @@ export default function Hero() {
   const pinWrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const titleWrapperRef = useRef<HTMLDivElement>(null);
+  const titleTextRef = useRef<HTMLDivElement>(null);
   const lettersRef = useRef<(HTMLSpanElement | null)[]>([]);
   const badgeRef = useRef<HTMLDivElement>(null);
   const portraitRef = useRef<HTMLDivElement>(null);
@@ -109,7 +110,7 @@ export default function Hero() {
           ScrollTrigger.refresh();
         });
 
-      // 7. Pinned Scroll Animation: Main Image gets Blurred & Hero Elements morph towards Left Sidebar
+      // 7. Pinned Scroll Animation: Main Image gets Blurred & Title Morphs
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: pinWrapperRef.current,
@@ -120,6 +121,15 @@ export default function Hero() {
       });
 
       scrollTl
+        .to(
+          titleTextRef.current,
+          {
+            scale: 0.05,
+            transformOrigin: 'top left',
+            ease: 'none',
+          },
+          0
+        )
         .to(
           portraitRef.current,
           {
@@ -132,14 +142,22 @@ export default function Hero() {
           },
           0
         )
+
         .to(
-          titleWrapperRef.current,
+          rightCardsRef.current,
           {
-            scale: 0.16,
-            xPercent: -40,
-            yPercent: -44,
-            opacity: 1,
-            transformOrigin: 'top left',
+            opacity: 0,
+            x: 60,
+            ease: 'none',
+          },
+          0
+        )
+        .to(
+          headlineRef.current,
+          {
+            y: -700,
+            yPercent: -150,
+            opacity: 0,
             ease: 'none',
           },
           0
@@ -161,25 +179,6 @@ export default function Hero() {
             ease: 'none',
           },
           0
-        )
-        .to(
-          rightCardsRef.current,
-          {
-            opacity: 0,
-            x: 60,
-            ease: 'none',
-          },
-          0
-        )
-        .to(
-          headlineRef.current,
-          {
-            y: -700,
-            yPercent: -150,
-            opacity: 0,
-            ease: 'none',
-          },
-          0
         );
     },
     { scope: pinWrapperRef }
@@ -195,9 +194,12 @@ export default function Hero() {
       {/* 1. SINGLE CONTINUOUS GSAP GIANT SAMAD TITLE — Centered across hero top */}
       <div
         ref={titleWrapperRef}
-        className="relative w-full pt-1 sm:pt-2 flex flex-col items-center justify-start pointer-events-none z-10"
+        className="fixed pl-1 w-full pt-1 sm:pt-6 flex flex-col items-center justify-start pointer-events-none z-10"
       >
-        <div className="flex items-center justify-center gap-1.5 sm:gap-3 md:gap-4 lg:gap-5 text-[20vw] sm:text-[21vw] md:text-[21.5vw] lg:text-[30vw] font-black tracking-wider leading-none text-[#FFFF23] uppercase font-anton drop-shadow-sm select-none origin-center">
+        <div
+          ref={titleTextRef}
+          className="flex items-center justify-center gap-1.5 sm:gap-3 md:gap-4 lg:gap-5 text-[20vw] sm:text-[21vw] md:text-[21.5vw] lg:text-[30vw] font-black tracking-wider leading-none text-[#FFFF23] uppercase font-anton drop-shadow-sm select-none origin-top"
+        >
           {LETTERS.map((letter, index) => (
             <span
               key={index}
@@ -278,13 +280,6 @@ export default function Hero() {
           className="absolute bottom-6 sm:bottom-10 inset-x-0 flex flex-col items-center text-center z-30 pointer-events-auto px-4"
         >
           <div className="w-full h-[220px] sm:h-[260px] md:h-[290px] max-w-[95vw] sm:max-w-[660px] mb-3 relative flex items-center justify-center">
-            {/* Fail-safe Crisp HTML Headline Text */}
-            {/* <h2 className="absolute inset-0 flex flex-col items-center justify-center font-black text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-tight drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)] z-0 pointer-events-none select-none uppercase">
-              <span>I BUILD</span>
-              <span>DIGITAL EXPERIENCES</span>
-              <span>DIFFERENTLY.</span>
-            </h2> */}
-
             {/* Interactive WebGL WarpText Overlay */}
             <div className="relative z-10 w-full h-full">
               <WarpText
