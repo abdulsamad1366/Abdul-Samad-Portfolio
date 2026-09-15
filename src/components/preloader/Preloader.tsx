@@ -45,7 +45,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#E3DFD3] overflow-hidden pointer-events-none select-none"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#d5cfbe] overflow-hidden pointer-events-none select-none"
         >
           {/* Centered Loading SAMAD Title */}
           <motion.div

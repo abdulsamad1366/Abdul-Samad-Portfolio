@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PORTFOLIO_DATA } from '@/data/portfolio-data';
 import WarpText from '@/components/ui/WarpText';
+import GlareHover from '@/components/ui/GlareHover';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -185,11 +186,11 @@ export default function Hero() {
   );
 
   return (
-    <div ref={pinWrapperRef} className="relative w-full h-[220vh] bg-[#E3DFD3]">
+    <div ref={pinWrapperRef} className="relative w-full h-[220vh] bg-[#d5cfbe]">
       <section
         ref={containerRef}
         id="hero"
-        className="sticky top-0 w-full h-screen h-[100dvh] bg-[#E3DFD3] text-black overflow-hidden flex flex-col justify-between select-none z-10"
+        className="sticky top-0 w-full h-screen h-[100dvh] bg-[#d5cfbe] text-black overflow-hidden flex flex-col justify-between select-none z-10"
       >
       {/* 1. SINGLE CONTINUOUS GSAP GIANT SAMAD TITLE — Centered across hero top */}
       <div
@@ -229,11 +230,11 @@ export default function Hero() {
       </div>
 
       {/* 2. Navigation Items Row — Positioned cleanly BELOW the giant SAMAD text */}
-      <div className="absolute top-[49vh] sm:top-[51vh] md:top-[52vh] lg:top-[51vh] inset-x-0 z-25 pointer-events-none">
+      <div className="absolute top-[49vh] sm:top-[51vh] md:top-[52vh] lg:top-[52vh] inset-x-0 z-25 pointer-events-none">
         <div
           ref={navRowRef}
           style={{ opacity: 0, visibility: 'hidden' }}
-          className="max-w-[1550px] mx-auto w-full px-6 sm:px-12 md:px-16 lg:px-20 flex items-center justify-between font-extrabold text-xs sm:text-sm tracking-wider uppercase pointer-events-auto"
+          className="max-w-[1550px] mx-auto w-full px-6 sm:px-12 md:px-16 lg:px-20 flex items-center justify-between font-extrabold text-base sm:text-lg md:text-xl tracking-wider uppercase pointer-events-auto"
         >
           {/* Left Links */}
           <div className="flex items-center gap-2 sm:gap-4 text-black">
@@ -283,7 +284,7 @@ export default function Hero() {
             {/* Interactive WebGL WarpText Overlay */}
             <div className="relative z-10 w-full h-full">
               <WarpText
-                text={"I BUILD\nDIGITAL EXPERIENCES\nDIFFERENTLY."}
+                text={"I BUILD\nDIGITAL EXPERIENCES\nTHAT MATTER."}
                 color="#ffffff"
                 warpStrength={0.08}
                 warpScale={1.7}
@@ -327,27 +328,49 @@ export default function Hero() {
         className="absolute left-4 sm:left-8 lg:left-16 bottom-6 lg:bottom-10 hidden md:flex flex-col gap-3 lg:gap-4 z-30 pointer-events-auto scale-90 md:scale-95 lg:scale-100 origin-bottom-left"
       >
         {/* Projects Glass Card */}
-        <div className="bg-white/20 backdrop-blur-2xl border border-white/35 rounded-2xl sm:rounded-3xl px-6 py-5 flex items-center gap-5 text-white shadow-[0_20px_50px_rgba(0,0,0,0.25)] min-w-[210px] lg:min-w-[230px]">
+        <GlareHover
+          width="clamp(240px, 15vw, 310px)"
+          height="clamp(125px, 7.5vw, 155px)"
+          background="rgba(214, 209, 193, 0.58)"
+          borderRadius="1rem"
+          borderColor="rgba(255, 255, 255, 0.55)"
+          glareOpacity={0.28}
+          glareAngle={-30}
+          glareSize={280}
+          transitionDuration={800}
+          className="backdrop-blur-2xl !flex !flex-row items-center justify-center gap-7 px-7 text-white shadow-[0_20px_50px_rgba(0,0,0,0.18)]"
+        >
           {/* Yellow Webflow W Logo */}
-          <svg className="w-12 lg:w-14 h-9 lg:h-10 text-[#FFFF23] fill-current flex-shrink-0 drop-shadow-sm" viewBox="0 0 200 120">
+          <svg className="w-20 lg:w-24 h-12 lg:h-14 text-[#FFFF23] fill-current flex-shrink-0 drop-shadow-sm" viewBox="0 0 200 120">
             <path d="M 20 20 L 65 100 L 98 45 L 131 100 L 180 20 L 142 20 L 118 70 L 98 20 L 78 70 L 54 20 Z" />
           </svg>
-          <div className="flex flex-col text-left">
-            <span className="text-2xl sm:text-3xl font-black leading-none text-white tracking-tight">80+</span>
-            <span className="text-sm sm:text-base font-extrabold text-white/95 mt-1">Projects</span>
+          <div className="flex flex-col text-center">
+            <span className="text-3xl lg:text-4xl font-black leading-none text-white tracking-tight">80+</span>
+            <span className="text-base lg:text-lg font-extrabold text-white/95 mt-2">Projects</span>
           </div>
-        </div>
+        </GlareHover>
 
         {/* Experience Glass Card */}
-        <div className="bg-white/20 backdrop-blur-2xl border border-white/35 rounded-2xl sm:rounded-3xl p-5 lg:p-6 flex flex-col items-center justify-center text-center text-white shadow-[0_20px_50px_rgba(0,0,0,0.25)] w-[160px] lg:w-[180px] self-center">
-          <span className="text-4xl lg:text-6xl font-black text-[#FFFF23] leading-none tracking-tight mb-2">7+</span>
-          <span className="text-xs lg:text-base font-black text-white leading-tight">
-            Years of<br />experience
+        <GlareHover
+          width="clamp(170px, 10vw, 200px)"
+          height="clamp(190px, 11vw, 220px)"
+          background="rgba(214, 209, 193, 0.58)"
+          borderRadius="1rem"
+          borderColor="rgba(255, 255, 255, 0.55)"
+          glareOpacity={0.28}
+          glareAngle={-30}
+          glareSize={280}
+          transitionDuration={800}
+          className="backdrop-blur-2xl !flex !flex-col items-center justify-center text-center text-white shadow-[0_20px_50px_rgba(0,0,0,0.18)] self-center"
+        >
+          <span className="text-5xl lg:text-6xl font-black text-[#FFFF23] leading-none tracking-tight mb-5">10+</span>
+          <span className="text-sm lg:text-base font-black text-white leading-tight">
+            TECHNOLOGIES
           </span>
-        </div>
+        </GlareHover>
 
         <p className="text-xs font-semibold text-black/80 mt-1 leading-relaxed max-w-[180px] lg:max-w-[200px]">
-          The Webflow Expert.<br />That's Samad.
+          Full-Stack Developer.<br /> Designer at heart. <br />Builder by nature.
         </p>
       </div>
 
@@ -355,26 +378,38 @@ export default function Hero() {
       <div
         ref={rightCardsRef}
         style={{ opacity: 0, visibility: 'hidden' }}
-        className="absolute right-4 sm:right-8 lg:right-16 bottom-6 lg:bottom-10 hidden md:flex flex-col gap-3 lg:gap-4 z-30 pointer-events-auto max-w-[220px] lg:max-w-[270px] scale-90 md:scale-95 lg:scale-100 origin-bottom-right"
+        className="absolute right-4 sm:right-8 lg:right-[10vw] xl:right-[12vw] bottom-6 lg:bottom-10 hidden md:flex flex-col gap-3 lg:gap-4 z-30 pointer-events-auto w-[240px] lg:w-[270px] scale-90 md:scale-95 lg:scale-100 origin-bottom-right"
       >
         {/* Traits Glass List */}
-        <div className="bg-white/20 backdrop-blur-2xl border border-white/35 rounded-2xl sm:rounded-3xl p-5 lg:p-6 flex flex-col gap-2.5 lg:gap-3 text-white shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
-          <div className="flex items-center gap-3 text-xs lg:text-sm font-extrabold text-white">
-            <span className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Creative
+        <GlareHover
+          width="auto"
+          height="auto"
+          background="rgba(214, 209, 193, 0.58)"
+          borderRadius="1rem"
+          borderColor="rgba(255, 255, 255, 0.55)"
+          glareOpacity={0.25}
+          glareAngle={-30}
+          glareSize={280}
+          transitionDuration={800}
+          className="backdrop-blur-3xl p-6 lg:p-7 !flex !flex-col gap-3 lg:gap-4 text-white shadow-[0_24px_80px_rgba(0,0,0,0.18)] ring-1 ring-white/10"
+        >
+          <div className="flex flex-col gap-1 text-xs lg:text-sm font-extrabold text-white">
+            <span className="text-[#FFFF23]">UI / UX</span>
+            <span>Interfaces that feel effortless</span>
           </div>
-          <div className="flex items-center gap-3 text-xs lg:text-sm font-extrabold text-white">
-            <span className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Reliable
+          <div className="flex flex-col gap-1 text-xs lg:text-sm font-extrabold text-white">
+            <span className="text-[#FFFF23]">FRONTEND</span>
+            <span>React · Angular · Next.js</span>
           </div>
-          <div className="flex items-center gap-3 text-xs lg:text-sm font-extrabold text-white">
-            <span className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Strategist
+          <div className="flex flex-col gap-1 text-xs lg:text-sm font-extrabold text-white">
+            <span className="text-[#FFFF23]">BACKEND</span>
+            <span>Node.js · Express · APIs</span>
           </div>
-          <div className="flex items-center gap-3 text-xs lg:text-sm font-extrabold text-white">
-            <span className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Builder
+          <div className="flex flex-col gap-1 text-xs lg:text-sm font-extrabold text-white">
+            <span className="text-[#FFFF23]">DATABASE</span>
+            <span>MongoDB · PostgreSQL</span>
           </div>
-          <div className="flex items-center gap-3 text-xs lg:text-sm font-extrabold text-white">
-            <span className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#FFFF23] inline-block shadow-[0_0_10px_#FFFF23]"></span> Efficient
-          </div>
-        </div>
+        </GlareHover>
 
         <p className="text-xs font-semibold text-black/80 leading-relaxed">
           Working closely with your team to deliver Webflow builds that merge creativity, technical excellence, and long-term value.

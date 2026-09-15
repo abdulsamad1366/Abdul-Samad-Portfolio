@@ -46,7 +46,7 @@ export default function SidebarNav({ isPinned }: { isPinned: boolean }) {
 
   return (
     <aside
-      className={`fixed left-4 top-4 w-[280px] xl:w-[310px] h-[calc(100vh-2rem)] bg-[#E3DFD3] text-black border border-white/60 rounded-3xl flex-col justify-between p-6 z-40 hidden lg:flex transition-all duration-500 origin-left ${
+      className={`fixed left-4 top-4 w-[280px] xl:w-[310px] h-[calc(100vh-2rem)] bg-[#d5cfbe] text-black border border-white/60 rounded-3xl flex-col justify-between p-6 z-40 hidden lg:flex transition-all duration-500 origin-left ${
         isPinned ? 'opacity-100 translate-x-0 pointer-events-auto shadow-2xl' : 'opacity-0 -translate-x-full pointer-events-none'
       }`}
     >
