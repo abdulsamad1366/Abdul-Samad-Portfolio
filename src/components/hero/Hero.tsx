@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PORTFOLIO_DATA } from '@/data/portfolio-data';
 import WarpText from '@/components/ui/WarpText';
 import GlareHover from '@/components/ui/GlareHover';
+import { TextRoll } from '@/components/ui/skiper-ui/skiper58';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -238,22 +239,22 @@ export default function Hero() {
         >
           {/* Left Links */}
           <div className="flex items-center gap-2 sm:gap-4 text-black">
-            <a href="#hero" className="hover:text-black/60 transition-colors">HOME</a>
+            <a href="#hero" className=" transition-colors"><TextRoll>HOME</TextRoll></a>
             <span className="text-black/40 font-normal">|</span>
-            <a href="#about" className="hover:text-black/60 transition-colors">ABOUT ME</a>
+            <a href="#about" className=" transition-colors"><TextRoll>ABOUT ME</TextRoll></a>
             <span className="text-black/40 font-normal">|</span>
-            <a href="#projects" className="hover:text-black/60 transition-colors">PROJECTS</a>
+            <a href="#projects" className="transition-colors"><TextRoll>PROJECTS</TextRoll></a>
           </div>
 
           {/* Right Links */}
           <div className="flex items-center gap-2 sm:gap-4 text-black">
-            <a href="#overview" className="hover:text-black/60 transition-colors">WHAT YOU GET</a>
+            <a href="#overview" className=" transition-colors"><TextRoll>WHAT YOU GET</TextRoll></a>
             <span className="text-black/40 font-normal">|</span>
-            <a href="#services" className="hover:text-black/60 transition-colors">SERVICES</a>
+            <a href="#services" className="transition-colors"><TextRoll>SERVICES</TextRoll></a>
             <span className="text-black/40 font-normal">|</span>
-            <a href="#testimonial" className="hover:text-black/60 transition-colors">CLIENTS</a>
+            <a href="#testimonial" className=" transition-colors"><TextRoll>CLIENTS</TextRoll></a>
             <span className="text-black/40 font-normal">|</span>
-            <a href="#faq" className="hover:text-black/60 transition-colors">FAQ's</a>
+            <a href="#faq" className="transition-colors"><TextRoll>FAQ's</TextRoll></a>
           </div>
         </div>
       </div>
