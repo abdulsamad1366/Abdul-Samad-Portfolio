@@ -23,6 +23,8 @@ export default function Hero() {
   const badgeRef = useRef<HTMLDivElement>(null);
   const portraitRef = useRef<HTMLDivElement>(null);
   const navRowRef = useRef<HTMLDivElement>(null);
+  const navItemsRef = useRef<(HTMLAnchorElement | null)[]>([]);
+  const navSeparatorsRef = useRef<(HTMLSpanElement | null)[]>([]);
   const headlineRef = useRef<HTMLDivElement>(null);
   const leftCardsRef = useRef<HTMLDivElement>(null);
   const rightCardsRef = useRef<HTMLDivElement>(null);
@@ -133,6 +135,14 @@ export default function Hero() {
           0
         )
         .to(
+          navSeparatorsRef.current,
+          {
+            opacity: 0,
+            ease: 'none',
+          },
+          0
+        )
+        .to(
           portraitRef.current,
           {
             filter: 'blur(24px)',
@@ -167,7 +177,6 @@ export default function Hero() {
         .to(
           navRowRef.current,
           {
-            opacity: 0,
             y: -40,
             ease: 'none',
           },
@@ -182,6 +191,29 @@ export default function Hero() {
           },
           0
         );
+
+      const navRowLeft = navRowRef.current?.getBoundingClientRect().left ?? 0;
+      const stackLeft = navRowLeft + -80; // Adjust this value to control the final left position of the stacked nav items
+      const navItemAnimations = [
+        { y: 0, transformOrigin: 'left top', at: 0 },
+        { y: 34, transformOrigin: 'left top', at: 0 },
+        { y: 68, transformOrigin: 'left top', at: 0 },
+        { y: 102, transformOrigin: 'left top', at: 0 },
+        { y: 136, transformOrigin: 'left top', at: 0 },
+        { y: 170, transformOrigin: 'left top', at: 0 },
+        { y: 204, transformOrigin: 'left top', at: 0 },
+      ];
+
+      navItemAnimations.forEach((animation, index) => {
+        const navItem = navItemsRef.current[index];
+
+        if (navItem) {
+          const { at, ...properties } = animation;
+          const itemLeft = navItem.getBoundingClientRect().left;
+          const x = stackLeft - itemLeft;
+          scrollTl.to(navItem, { ...properties, x, ease: 'none' }, at);
+        }
+      });
     },
     { scope: pinWrapperRef }
   );
@@ -231,30 +263,32 @@ export default function Hero() {
       </div>
 
       {/* 2. Navigation Items Row — Positioned cleanly BELOW the giant SAMAD text */}
-      <div className="absolute top-[49vh] sm:top-[51vh] md:top-[52vh] lg:top-[52vh] inset-x-0 z-25 pointer-events-none">
+      <div className="fixed top-[49vh] sm:top-[51vh] md:top-[52vh] lg:top-[52vh] inset-x-0 z-25 pointer-events-none">
         <div
           ref={navRowRef}
           style={{ opacity: 0, visibility: 'hidden' }}
-          className="max-w-[1550px] mx-auto w-full px-6 sm:px-12 md:px-16 lg:px-20 flex items-center justify-between font-extrabold text-base sm:text-lg md:text-xl tracking-wider uppercase pointer-events-auto"
+          className="max-w-[1550px]  mx-auto w-full px-6 sm:px-12 md:px-16 lg:px-20 flex items-center justify-between font-extrabold text-base sm:text-lg md:text-xl tracking-wider uppercase pointer-events-auto"
         >
           {/* Left Links */}
           <div className="flex items-center gap-2 sm:gap-4 text-black">
-            <a href="#hero" className=" transition-colors"><TextRoll>HOME</TextRoll></a>
-            <span className="text-black/40 font-normal">|</span>
-            <a href="#about" className=" transition-colors"><TextRoll>ABOUT ME</TextRoll></a>
-            <span className="text-black/40 font-normal">|</span>
-            <a href="#projects" className="transition-colors"><TextRoll>PROJECTS</TextRoll></a>
+            <a ref={(element) => { navItemsRef.current[0] = element; }} href="#hero" className="transition-colors">
+              <TextRoll>HOME</TextRoll>
+            </a>
+            <span ref={(element) => { navSeparatorsRef.current[0] = element; }} className="text-black/40 font-normal">|</span>
+            <a ref={(element) => { navItemsRef.current[1] = element; }} href="#about" className="transition-colors"><TextRoll>ABOUT ME</TextRoll></a>
+            <span ref={(element) => { navSeparatorsRef.current[1] = element; }} className="text-black/40 font-normal">|</span>
+            <a ref={(element) => { navItemsRef.current[2] = element; }} href="#projects" className="transition-colors"><TextRoll>PROJECTS</TextRoll></a>
           </div>
 
           {/* Right Links */}
           <div className="flex items-center gap-2 sm:gap-4 text-black">
-            <a href="#overview" className=" transition-colors"><TextRoll>WHAT YOU GET</TextRoll></a>
-            <span className="text-black/40 font-normal">|</span>
-            <a href="#services" className="transition-colors"><TextRoll>SERVICES</TextRoll></a>
-            <span className="text-black/40 font-normal">|</span>
-            <a href="#testimonial" className=" transition-colors"><TextRoll>CLIENTS</TextRoll></a>
-            <span className="text-black/40 font-normal">|</span>
-            <a href="#faq" className="transition-colors"><TextRoll>FAQ's</TextRoll></a>
+            <a ref={(element) => { navItemsRef.current[3] = element; }} href="#overview" className="transition-colors"><TextRoll>WHAT YOU GET</TextRoll></a>
+            <span ref={(element) => { navSeparatorsRef.current[2] = element; }} className="text-black/40 font-normal">|</span>
+            <a ref={(element) => { navItemsRef.current[4] = element; }} href="#services" className="transition-colors"><TextRoll>SERVICES</TextRoll></a>
+            <span ref={(element) => { navSeparatorsRef.current[3] = element; }} className="text-black/40 font-normal">|</span>
+            <a ref={(element) => { navItemsRef.current[5] = element; }} href="#testimonial" className="transition-colors"><TextRoll>CLIENTS</TextRoll></a>
+            <span ref={(element) => { navSeparatorsRef.current[4] = element; }} className="text-black/40 font-normal">|</span>
+            <a ref={(element) => { navItemsRef.current[6] = element; }} href="#faq" className="transition-colors"><TextRoll>FAQ's</TextRoll></a>
           </div>
         </div>
       </div>
