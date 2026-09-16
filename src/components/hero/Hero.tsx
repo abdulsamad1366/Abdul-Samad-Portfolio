@@ -25,6 +25,10 @@ export default function Hero() {
   const navRowRef = useRef<HTMLDivElement>(null);
   const navItemsRef = useRef<(HTMLAnchorElement | null)[]>([]);
   const navSeparatorsRef = useRef<(HTMLSpanElement | null)[]>([]);
+  const projectIconRef = useRef<SVGSVGElement>(null);
+  const projectsInfoRef = useRef<HTMLDivElement>(null);
+  const technologyCountRef = useRef<HTMLSpanElement>(null);
+  const technologyLabelRef = useRef<HTMLSpanElement>(null);
   const headlineRef = useRef<HTMLDivElement>(null);
   const leftCardsRef = useRef<HTMLDivElement>(null);
   const rightCardsRef = useRef<HTMLDivElement>(null);
@@ -135,6 +139,14 @@ export default function Hero() {
           0
         )
         .to(
+          titleTextRef.current,
+          {
+            color: 'black',
+            ease: 'none',
+          },
+          '>'
+        )
+        .to(
           navSeparatorsRef.current,
           {
             opacity: 0,
@@ -186,11 +198,24 @@ export default function Hero() {
           leftCardsRef.current,
           {
             opacity: 0,
-            x: -60,
+            y: -18,
             ease: 'none',
           },
           0
         );
+
+      const statElementAnimations = [
+        { target: projectIconRef.current, x: -120, y: 0, scale: 0.82, at: 0 },
+        { target: projectsInfoRef.current, x: -90, y: 0, scale: 0.86, at: 0.06 },
+        { target: technologyCountRef.current, x: -110, y: 0, scale: 0.82, at: 0.12 },
+        { target: technologyLabelRef.current, x: -90, y: 0, scale: 0.86, at: 0.18 },
+      ];
+
+      statElementAnimations.forEach(({ target, at, ...properties }) => {
+        if (target) {
+          scrollTl.to(target, { ...properties, transformOrigin: 'left center', ease: 'none' }, at);
+        }
+      });
 
       const navRowLeft = navRowRef.current?.getBoundingClientRect().left ?? 0;
       const stackLeft = navRowLeft + -80; // Adjust this value to control the final left position of the stacked nav items
@@ -337,20 +362,20 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="flex items-center justify-center gap-3 relative z-30">
+          <div className="flex w-full flex-wrap items-center justify-center gap-3 relative z-30">
             <a
               href={PORTFOLIO_DATA.profile.socials.calCom}
               target="_blank"
               rel="noreferrer"
-              className="bg-[#FFFF23] text-black font-extrabold text-xs sm:text-sm px-6 py-3 rounded-full hover:bg-white transition-all shadow-xl hover:scale-105"
+              className="min-w-[132px] rounded-2xl bg-[#FFFF23] px-7 py-6 text-center text-xl font-extrabold text-black shadow-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-[#d5cfbe]"
             >
-              Book a Call
+              <TextRoll> Book a Call</TextRoll>
             </a>
             <a
               href="#about"
-              className="bg-[#FFFF23] text-black font-extrabold text-xs sm:text-sm px-6 py-3 rounded-full hover:bg-white transition-all shadow-xl hover:scale-105"
+              className="min-w-[132px] rounded-2xl bg-[#FFFF23] px-7 py-6 text-center text-xl font-extrabold text-black shadow-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-[#d5cfbe]"
             >
-              About Me
+              <TextRoll> About Me</TextRoll>
             </a>
           </div>
         </div>
@@ -375,11 +400,13 @@ export default function Hero() {
           transitionDuration={800}
           className="backdrop-blur-2xl !flex !flex-row items-center justify-center gap-7 px-7 text-white shadow-[0_20px_50px_rgba(0,0,0,0.18)]"
         >
-          {/* Yellow Webflow W Logo */}
-          <svg className="w-20 lg:w-24 h-12 lg:h-14 text-[#FFFF23] fill-current flex-shrink-0 drop-shadow-sm" viewBox="0 0 200 120">
-            <path d="M 20 20 L 65 100 L 98 45 L 131 100 L 180 20 L 142 20 L 118 70 L 98 20 L 78 70 L 54 20 Z" />
+          {/* Yellow Project Folder Icon */}
+          <svg ref={projectIconRef} className="w-20 lg:w-24 h-12 lg:h-14 text-[#FFFF23] fill-current flex-shrink-0 drop-shadow-sm" viewBox="0 0 200 120" aria-hidden="true">
+            <path d="M 18 30 C 18 21 25 14 34 14 H 76 L 94 32 H 166 C 175 32 182 39 182 48 V 92 C 182 101 175 108 166 108 H 34 C 25 108 18 101 18 92 Z" />
+            <path fill="#d5cfbe" d="M 38 48 H 162 V 88 H 38 Z" />
+            <path d="M 52 58 H 70 V 76 H 52 Z M 82 58 H 100 V 76 H 82 Z M 112 58 H 130 V 76 H 112 Z" />
           </svg>
-          <div className="flex flex-col text-center">
+          <div ref={projectsInfoRef} className="flex flex-col text-center">
             <span className="text-3xl lg:text-4xl font-black leading-none text-white tracking-tight">80+</span>
             <span className="text-base lg:text-lg font-extrabold text-white/95 mt-2">Projects</span>
           </div>
@@ -398,8 +425,8 @@ export default function Hero() {
           transitionDuration={800}
           className="backdrop-blur-2xl !flex !flex-col items-center justify-center text-center text-white shadow-[0_20px_50px_rgba(0,0,0,0.18)] self-center"
         >
-          <span className="text-5xl lg:text-6xl font-black text-[#FFFF23] leading-none tracking-tight mb-5">10+</span>
-          <span className="text-sm lg:text-base font-black text-white leading-tight">
+          <span ref={technologyCountRef} className="text-5xl lg:text-6xl font-black text-[#FFFF23] leading-none tracking-tight mb-5">10+</span>
+          <span ref={technologyLabelRef} className="text-sm lg:text-base font-black text-white leading-tight">
             TECHNOLOGIES
           </span>
         </GlareHover>
